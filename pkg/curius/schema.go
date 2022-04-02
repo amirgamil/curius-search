@@ -1,29 +1,29 @@
 package curius
 
 type Trail struct {
-	id int64 `json:"id"`
-	trailName string `json:"trailName"`
+	Id int64 `json:"id"`
+	TrailName string `json:"trailName"`
 }
 
 type Highlight struct {
-	id int64 `json:"id"`
-	highlight string `json:"highlight"`
+	Id int64 `json:"id"`
+	Highlight string `json:"highlight"`
 }
 
 type Metadata struct {
-	full_text string `json:"full_text"`
-	page_type string `json:"page_type"`
+	Full_text string `json:"full_text"`
+	Page_type string `json:"page_type"`
 }
 
 type CuriusSave struct {
-	id int64 `json:"id"`
-	link string `json:"link"`
-	title string `json:"title"`
-	highlights []Highlight `json:"highlights"`
-	trails []Trail `json:"trails"`
-	metadata Metadata `json:"metadata"`
+	Id int64 `json:"id"`
+	Link string `json:"link"`
+	Title string `json:"title"`
+	Highlights []Highlight `json:"highlights"`
+	Trails []Trail `json:"trails"`
+	Metadata Metadata `json:"metadata"`
 }
 
 type CuriusBlob struct { 
-	userSaved []CuriusSave `json:"userSaved"`	
+	UserSaved []CuriusSave `json:"userSaved"`	
 }

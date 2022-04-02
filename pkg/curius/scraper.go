@@ -5,18 +5,29 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
+
+	"github.com/joho/godotenv"
 )
 
+func loadEnv() string {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	return os.Getenv("CURIUS_USER_ID")
+}
 
 func GetAllCuriusSaves() ([]CuriusSave, error) {
 	var curiusBlob CuriusBlob
 	var allCuriusSaves []CuriusSave
 	continueSearching := true 
-	for page := 0; !continueSearching; page++  {
-		curiusId := os.Getenv("CURIUS_USER_ID")
+	curiusId := loadEnv()
+	for page := 0; continueSearching ; page++  {
+		log.Println(fmt.Sprintf("Getting page %d", page))
 		url := "https://curius.app/api/users/" + curiusId + "/links?page=" + strconv.Itoa(page)
 		resp, err := http.Get(url)
 		if err != nil {
@@ -31,10 +42,10 @@ func GetAllCuriusSaves() ([]CuriusSave, error) {
 		if err != nil {
 			return []CuriusSave{}, errors.New(fmt.Sprintf("Error unmarshaling scraped Curius link: ", err))
 		}
-		if len(curiusBlob.userSaved) == 0 {
+		if len(curiusBlob.UserSaved) == 0 {
 			continueSearching = false;
 		} else {
-			allCuriusSaves = append(allCuriusSaves, curiusBlob.userSaved...)
+			allCuriusSaves = append(allCuriusSaves, curiusBlob.UserSaved...)
 		}
 	}
 	return allCuriusSaves, nil

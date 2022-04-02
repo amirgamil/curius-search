@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/amirgamil/curius-search/pkg/apollo-search/backend"
-	"github.com/amirgamil/curius-search/pkg/apollo-search/schema"
+	"github.com/amirgamil/curius-search/pkg/apollo-curius/backend"
+	"github.com/amirgamil/curius-search/pkg/apollo-curius/schema"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	jsoniter "github.com/json-iterator/go"
@@ -138,7 +138,7 @@ func Start() {
 	currentSearchResults = make(map[string]string)
 	srv := &http.Server{
 		Handler:      r,
-		Addr:         "0.0.0.0:8993",
+		Addr:         "0.0.0.0:8990",
 		WriteTimeout: 60 * time.Second,
 		ReadTimeout:  60 * time.Second,
 	}

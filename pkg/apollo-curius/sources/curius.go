@@ -3,7 +3,6 @@ package sources
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -16,13 +15,13 @@ const curiusPath = "../curius/data.json"
 
 
 func getCurius() map[string]schema.Data {
-	// data, err := curius.GetAllCuriusSaves()
-	// if err != nil {
-	// 	log.Println(err)
-	// 	return make(map[string]schema.Data)
-	// }
-	fmt.Println("Hello")
-	dataToIndex := convertToReqFormat([]curius.CuriusSave{})
+	log.Println("Getting curius data")
+	data, err := curius.GetAllCuriusSaves()
+	if err != nil {
+		log.Println(err)
+		return make(map[string]schema.Data)
+	}
+	dataToIndex := convertToReqFormat(data)
 	return dataToIndex
 }
 
@@ -39,7 +38,7 @@ func loadCuriusData() ([]curius.CuriusSave, error) {
 func getTagsFromCuriusTrails(trails []curius.Trail) []string {
 	var tags []string
 	for _, trail := range trails {
-		tags = append(tags, trail.trailName)
+		tags = append(tags, trail.TrailName)
 	}
 	return tags
 }
@@ -47,19 +46,20 @@ func getTagsFromCuriusTrails(trails []curius.Trail) []string {
 //takes a lists of thoughts and converts it into the require data struct we need for the api
 func convertToReqFormat(data []curius.CuriusSave) map[string]schema.Data {
 	dataToIndex := make(map[string]schema.Data)
-	for i, curiusSave := range data {
+	for _, curiusSave := range data {
+		keyInMap := strconv.Itoa(int(curiusSave.Id))
 		//check if we've computed the data for this already
-		if _, isInMap := sources[strconv.Itoa(id)]; !isInMap {
+		if _, isInMap := sources[keyInMap]; !isInMap {
 			//trust curius to have all of the contents
-			if (curiusSave.metadata.full_text != "") {
-				dataToIndex[keyInMap] = schema.Data{Title: curiusSave.title, Content: curiusSave.metadata.full_text, Link: curiusSave.link, Tags: getTagsFromCuriusTrails(curiusSave.trails)}
+			if (curiusSave.Metadata.Full_text != "") {
+				dataToIndex[keyInMap] = schema.Data{Title: curiusSave.Title, Content: curiusSave.Metadata.Full_text, Link: curiusSave.Link, Tags: getTagsFromCuriusTrails(curiusSave.Trails)}
 			} else {
 				//attempt to scrape it with go-query
-				articleContents, err := schema.Scrape(curiusSave.link);
+				articleContents, err := schema.Scrape(curiusSave.Link);
 				if err != nil {
 					log.Println(err)
 				} else {
-					dataToIndex[keyInMap] = schema.Data{Title: curiusSave.title, Content: articleContents.Content, Link: curiusSave.link, Tags: getTagsFromCuriusTrails(curiusSave.trails)}
+					dataToIndex[keyInMap] = schema.Data{Title: curiusSave.Title, Content: articleContents.Content, Link: curiusSave.Link, Tags: getTagsFromCuriusTrails(curiusSave.Trails)}
 				}
 
 			}
