@@ -73,7 +73,10 @@ class Result extends Component {
             mode: "no-cors",
             body: JSON.stringify(),
         })
-            .then((data) => data.json())
+            .then((data) => {
+                console.log("data: ", data);
+                return data.json();
+            })
             .then((res) => {
                 this.displayDetails = true;
                 //add highlighting
@@ -101,31 +104,15 @@ class Result extends Component {
                       <div class="modalContent">
                           <div class="windowBar">
                               <p class="modalNavTitle">details.txt</p>
-                            <p class="modalNavTitle">details.txt</p> 
-                              <p class="modalNavTitle">details.txt</p>
-                              <p class="modalNavTitle">details.txt</p>
-                              <p class="modalNavTitle">details.txt</p>
                               <div class="navPattern"></div>
                               <button class="closeModal" onclick=${this.closeModal}>x</button>
                           </div>
                           <div class="modalBody">
-                        <div class="modalBody"> 
-                          <div class="modalBody">
-                              <div class="modalBody">
-                                  <div class="modalBody">
-                                      <div class="rowWrapper">
-                                          <div class="rowWrapper">
-                                              <div class="rowWrapper">
-                            <div class="rowWrapper"> 
-                                              <div class="rowWrapper">
-                                                  <h2>${title}</h2>
-                                              </div>
-                                              <p><a href=${link}>Source</a></p>
-                                              <p innerHTML=${fullContent}></p>
-                                          </div>
-                                      </div>
-                                  </div>
+                              <div class="rowWrapper">
+                                  <h2>${title}</h2>
                               </div>
+                              <p><a href=${link}>Source</a></p>
+                              <p innerHTML=${fullContent}></p>
                           </div>
                       </div>
                   </div>`
