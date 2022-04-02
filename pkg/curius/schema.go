@@ -18,6 +18,7 @@ type Metadata struct {
 type CuriusSave struct {
 	Id int64 `json:"id"`
 	Link string `json:"link"`
+	CreatedDate string `json:"createdDate"`
 	Title string `json:"title"`
 	Highlights []Highlight `json:"highlights"`
 	Trails []Trail `json:"trails"`
