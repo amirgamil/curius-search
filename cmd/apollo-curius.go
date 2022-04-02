@@ -19,7 +19,7 @@ func main() {
 		backend.InitializeFilesAndData()
 		//we call ticker to refresh inverted index regularly once every 3 days however
 		//for convenience we often want to do a refresh "on start" so we add this here too
-		// backend.RefreshInvertedIndex()
+		backend.RefreshInvertedIndex()
 		log.Println("Refreshing inverted index on launch: ")
 		// two days in miliseconds
 		// once every three days, takes all the records, pulls from the data sources,
