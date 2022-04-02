@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/amirgamil/apollo/pkg/apollo/schema"
+	"github.com/amirgamil/curius-search/pkg/apollo-curius/schema"
 )
 
 //TODO: should search titles too (and put high probability mass on those tokens)

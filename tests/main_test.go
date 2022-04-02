@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/amirgamil/apollo/pkg/apollo/backend"
+	"github.com/amirgamil/curius-search/pkg/apollo-curius/backend"
 )
 
 //compare arrays because deepEqual is inconsistent smh

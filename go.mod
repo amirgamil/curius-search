@@ -1,4 +1,4 @@
-module github.com/amirgamil/apollo
+module github.com/amirgamil/curius-search
 
 go 1.14
 

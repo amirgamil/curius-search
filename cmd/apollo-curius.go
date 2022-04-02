@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/amirgamil/apollo/pkg/apollo"
-	"github.com/amirgamil/apollo/pkg/apollo/backend"
+	"github.com/amirgamil/curius-search/pkg/apollo-curius"
+	"github.com/amirgamil/curius-search/pkg/apollo-curius/backend"
 )
 
 func main() {
