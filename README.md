@@ -13,7 +13,7 @@ If you use [Curius](https://curius.app/), you can get a version of this running 
 2. Run `go run cmd/apollo-curius.go`
 3. You should be set! Wait maybe a minute or two for the program to fetch all your Curius data and set up the inverted index, when you see a `Server listening on 0.0.0.0:8990`, you can navigate to `http://localhost:8900` and it should be working!
 
-Note if you want to deploy it, this might be a little more involved, but I can help if you DM me on [Twitter](https://twitter.com/amirbolous). I have a Digital Ocean Droplet and I deployed this app as a `systemctl` service behind an `nginx` reverse-proxy. If none of that makes sense, DM me and I'll explain.
+Note if you want to deploy it, this might be a little more involved, but I can help if you DM me on [Twitter](https://twitter.com/amirbolous). I have a Digital Ocean Droplet and I deployed this app as a `systemd` service behind an `nginx` reverse-proxy. If none of that makes sense, DM me and I'll explain.
 
 ## Exporting your Curius
 
